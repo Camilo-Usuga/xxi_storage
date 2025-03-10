@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: #ffffff; /* Blanco */
+    --foreground: #000000; /* Negro */
+    --card: #ffffff; /* Blanco */
+    --card-foreground: #000000; /* Negro */
+    --popover: #ffffff; /* Blanco */
+    --popover-foreground: #000000; /* Negro */
+    --primary: #365e32; /* Verde */
+    --primary-foreground: #ffffff; /* Blanco */
+    --secondary: #f0f0f0; /* Gris claro */
+    --secondary-foreground: #000000; /* Negro */
+    --muted: #f0f0f0; /* Gris claro */
+    --muted-foreground: #737373; /* Gris medio */
+    --accent: #365e32; /* Verde */
+    --accent-foreground: #ffffff; /* Blanco */
+    --destructive: #ff0000; /* Rojo */
+    --destructive-foreground: #ffffff; /* Blanco */
+    --border: #e0e0e0; /* Gris claro */
+    --input: #e0e0e0; /* Gris claro */
+    --ring: #000000; /* Negro */
+    --chart-1: #365e32; /* Verde */
+    --chart-2: #000000; /* Negro */
+    --chart-3: #ffffff; /* Blanco */
+    --chart-4: #365e32; /* Verde */
+    --chart-5: #000000; /* Negro */
+    --radius: 0.5rem;
+    --sidebar-background: #f0f0f0; /* Gris claro */
+    --sidebar-foreground: #000000; /* Negro */
+    --sidebar-primary: #365e32; /* Verde */
+    --sidebar-primary-foreground: #ffffff; /* Blanco */
+    --sidebar-accent: #365e32; /* Verde */
+    --sidebar-accent-foreground: #ffffff; /* Blanco */
+    --sidebar-border: #e0e0e0; /* Gris claro */
+    --sidebar-ring: #000000; /* Negro */
+  }
+  .dark {
+    --background: #000000; /* Negro */
+    --foreground: #ffffff; /* Blanco */
+    --card: #000000; /* Negro */
+    --card-foreground: #ffffff; /* Blanco */
+    --popover: #000000; /* Negro */
+    --popover-foreground: #ffffff; /* Blanco */
+    --primary: #365e32; /* Verde */
+    --primary-foreground: #ffffff; /* Blanco */
+    --secondary: #1a1a1a; /* Gris oscuro */
+    --secondary-foreground: #ffffff; /* Blanco */
+    --muted: #1a1a1a; /* Gris oscuro */
+    --muted-foreground: #737373; /* Gris medio */
+    --accent: #365e32; /* Verde */
+    --accent-foreground: #ffffff; /* Blanco */
+    --destructive: #ff0000; /* Rojo */
+    --destructive-foreground: #ffffff; /* Blanco */
+    --border: #1a1a1a; /* Gris oscuro */
+    --input: #1a1a1a; /* Gris oscuro */
+    --ring: #ffffff; /* Blanco */
+    --chart-1: #365e32; /* Verde */
+    --chart-2: #ffffff; /* Blanco */
+    --chart-3: #000000; /* Negro */
+    --chart-4: #365e32; /* Verde */
+    --chart-5: #ffffff; /* Blanco */
+    --sidebar-background: #1a1a1a; /* Gris oscuro */
+    --sidebar-foreground: #ffffff; /* Blanco */
+    --sidebar-primary: #365e32; /* Verde */
+    --sidebar-primary-foreground: #ffffff; /* Blanco */
+    --sidebar-accent: #365e32; /* Verde */
+    --sidebar-accent-foreground: #ffffff; /* Blanco */
+    --sidebar-border: #1a1a1a; /* Gris oscuro */
+    --sidebar-ring: #ffffff; /* Blanco */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
