@@ -2,67 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-
+    --background: 0 0% 100%; /* Blanco */
+    --foreground: 0 0% 0%; /* Negro */
+    --card: 0 0% 100%; /* Blanco */
+    --card-foreground: 0 0% 0%; /* Negro */
+    --popover: 0 0% 100%; /* Blanco */
+    --popover-foreground: 0 0% 0%; /* Negro */
+    --primary: 120 50% 30%; /* Verde */
+    --primary-foreground: 0 0% 100%; /* Blanco */
+    --secondary: 0 0% 94%; /* Gris claro */
+    --secondary-foreground: 0 0% 0%; /* Negro */
+    --muted: 0 0% 94%; /* Gris claro */
+    --muted-foreground: 0 0% 45%; /* Gris medio */
+    --accent: 120 50% 30%; /* Verde */
+    --accent-foreground: 0 0% 100%; /* Blanco */
+    --destructive: 0 100% 50%; /* Rojo */
+    --destructive-foreground: 0 0% 100%; /* Blanco */
+    --border: 0 0% 88%; /* Gris claro */
+    --input: 0 0% 88%; /* Gris claro */
+    --ring: 0 0% 0%; /* Negro */
+    --chart-1: 120 50% 30%; /* Verde */
+    --chart-2: 0 0% 0%; /* Negro */
+    --chart-3: 0 0% 100%; /* Blanco */
+    --chart-4: 120 50% 30%; /* Verde */
+    --chart-5: 0 0% 0%; /* Negro */
     --radius: 0.5rem;
+    --sidebar-background: 0 0% 94%; /* Gris claro */
+    --sidebar-foreground: 0 0% 0%; /* Negro */
+    --sidebar-primary: 120 50% 30%; /* Verde */
+    --sidebar-primary-foreground: 0 0% 100%; /* Blanco */
+    --sidebar-accent: 120 50% 30%; /* Verde */
+    --sidebar-accent-foreground: 0 0% 100%; /* Blanco */
+    --sidebar-border: 0 0% 88%; /* Gris claro */
+    --sidebar-ring: 0 0% 0%; /* Negro */
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --background: 0 0% 0%; /* Negro */
+    --foreground: 0 0% 100%; /* Blanco */
+    --card: 0 0% 0%; /* Negro */
+    --card-foreground: 0 0% 100%; /* Blanco */
+    --popover: 0 0% 0%; /* Negro */
+    --popover-foreground: 0 0% 100%; /* Blanco */
+    --primary: 120 50% 30%; /* Verde */
+    --primary-foreground: 0 0% 100%; /* Blanco */
+    --secondary: 0 0% 10%; /* Gris oscuro */
+    --secondary-foreground: 0 0% 100%; /* Blanco */
+    --muted: 0 0% 10%; /* Gris oscuro */
+    --muted-foreground: 0 0% 45%; /* Gris medio */
+    --accent: 120 50% 30%; /* Verde */
+    --accent-foreground: 0 0% 100%; /* Blanco */
+    --destructive: 0 100% 50%; /* Rojo */
+    --destructive-foreground: 0 0% 100%; /* Blanco */
+    --border: 0 0% 10%; /* Gris oscuro */
+    --input: 0 0% 10%; /* Gris oscuro */
+    --ring: 0 0% 100%; /* Blanco */
+    --chart-1: 120 50% 30%; /* Verde */
+    --chart-2: 0 0% 100%; /* Blanco */
+    --chart-3: 0 0% 0%; /* Negro */
+    --chart-4: 120 50% 30%; /* Verde */
+    --chart-5: 0 0% 100%; /* Blanco */
+    --sidebar-background: 0 0% 10%; /* Gris oscuro */
+    --sidebar-foreground: 0 0% 100%; /* Blanco */
+    --sidebar-primary: 120 50% 30%; /* Verde */
+    --sidebar-primary-foreground: 0 0% 100%; /* Blanco */
+    --sidebar-accent: 120 50% 30%; /* Verde */
+    --sidebar-accent-foreground: 0 0% 100%; /* Blanco */
+    --sidebar-border: 0 0% 10%; /* Gris oscuro */
+    --sidebar-ring: 0 0% 100%; /* Blanco */
   }
 }
 
@@ -74,4 +93,3 @@
     @apply bg-background text-foreground;
   }
 }
-

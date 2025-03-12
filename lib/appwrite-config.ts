@@ -1,4 +1,13 @@
-import { Client, Account, Storage, Databases, ID, Query } from "appwrite";
+import {
+  Client,
+  Account,
+  Storage,
+  Databases,
+  ID,
+  Query,
+  Role,
+  Permission,
+} from "appwrite";
 
 // Initialize the Appwrite client
 const client = new Client()
@@ -18,19 +27,8 @@ export const createUserAccount = async (
 ) => {
   try {
     const newAccount = await account.create(ID.unique(), email, password, name);
-    const registerAccount = await databases.createDocument(
-      process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
-      process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID_USERS!,
-      ID.unique(),
-      {
-        email: email,
-        name: name,
-        password: password,
-      }
-    );
-    console.log(registerAccount);
 
-    if (!newAccount || registerAccount) throw Error;
+    if (!newAccount) throw Error;
 
     const session = await account.createEmailPasswordSession(email, password);
 
@@ -81,9 +79,10 @@ export const getCurrentUser = async () => {
 export const uploadFile = async (file: File, userId: string) => {
   try {
     // Upload file to storage
+    const id = ID.unique();
     const uploadedFile = await storage.createFile(
       process.env.NEXT_PUBLIC_APPWRITE_STORAGE_BUCKET_ID!,
-      ID.unique(),
+      id,
       file
     );
 
@@ -98,7 +97,7 @@ export const uploadFile = async (file: File, userId: string) => {
     const fileRecord = await databases.createDocument(
       process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
       process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID!,
-      ID.unique(),
+      id,
       {
         name: file.name,
         size: file.size,
@@ -173,36 +172,35 @@ export const deleteFile = async (fileId: string, databaseId: string) => {
 
 export const shareFile = async (fileId: string, userEmail: string) => {
   try {
-    // Get the user to share with
+    // Obtener el usuario con el que compartir
     const users = await databases.listDocuments(
       process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
       process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID_USERS!,
       [
-        // Assuming you have a users collection
+        // Asumiendo que tienes una colección de usuarios
         Query.equal("email", userEmail),
       ]
     );
+    console.log(fileId);
+    console.log(users.documents[0]);
 
     if (users.documents.length === 0) {
-      console.log(userEmail);
-      throw new Error("User not found");
+      throw new Error("Usuario no encontrado");
     }
 
     const userToShareWith = users.documents[0];
 
-    // Update the file record to include the user in shared_with array
-    const updatedFile = await databases.updateDocument(
-      process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
-      process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID!,
+    // Actualizar el registro del archivo para incluir al usuario en el array shared_with
+    const updatedFile = await storage.updateFile(
+      process.env.NEXT_PUBLIC_APPWRITE_STORAGE_BUCKET_ID!,
       fileId,
-      {
-        shared_with: [userToShareWith.$id],
-      }
+      undefined,
+      [Permission.read(Role.user(userToShareWith.$id))]
     );
-
+    console.log(updatedFile);
     return updatedFile;
   } catch (error) {
-    console.error("Error sharing file:", error);
+    console.error("Error al compartir el archivo:", error);
     throw error;
   }
 };

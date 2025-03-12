@@ -4,7 +4,7 @@ import type React from "react";
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { account, getCurrentUser } from "@/lib/appwrite-config";
+import { account, databases, getCurrentUser, ID } from "@/lib/appwrite-config";
 import type { Models } from "appwrite";
 
 interface AuthContextType {
@@ -52,8 +52,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const register = async (email: string, password: string, name: string) => {
     try {
-      await account.create("unique()", email, password, name);
+      const id = ID.unique();
+      await account.create(id, email, password, name);
       await login(email, password);
+      const registerAccount = await databases.createDocument(
+        process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+        process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID_USERS!,
+        id,
+        {
+          email: email,
+          name: name,
+          password: password,
+        }
+      );
+      console.log(registerAccount);
     } catch (error) {
       console.error("Registration error:", error);
       throw error;
